@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'features/get x dependency injection/get_x_dependency_injection.dart';
 import 'features/splash/splash_screen.dart';
 
 void main() async {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'OHBoyD23',
       debugShowCheckedModeBanner: false,
 
-    //  initialBinding: GetXDependencyInjection(),
+      initialBinding: GetXDependencyInjection(),
 
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
