@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/Get.dart';
+import 'package:get/get.dart';
 import 'package:iconic/features/user/home/home%20searching/widget/map_widget.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../widget/body_container_widget.dart';
+import '../widget/calender_widget/calender_dialog_box_widget.dart';
 
 class HomeSearchingScreen extends StatefulWidget {
   const HomeSearchingScreen({super.key});
@@ -20,12 +21,12 @@ class _HomeSearchingScreenState extends State<HomeSearchingScreen> {
     {
       "countryName": "Lebanon",
       "worldMapImage":
-          "https://i.postimg.cc/W4yNBJc5/Screenshot-2025-12-21-203118.jpg",
+      "https://i.postimg.cc/W4yNBJc5/Screenshot-2025-12-21-203118.jpg",
     },
     {
       "countryName": "Jordan",
       "worldMapImage":
-          "https://i.postimg.cc/9Q4Nx4bt/Screenshot-2025-12-21-203456.png",
+      "https://i.postimg.cc/9Q4Nx4bt/Screenshot-2025-12-21-203456.png",
     },
   ];
 
@@ -118,7 +119,7 @@ class _HomeSearchingScreenState extends State<HomeSearchingScreen> {
                                 selectCountry: false,
                                 countryName: countries[index]['countryName'],
                                 worldMapImage:
-                                    countries[index]['worldMapImage'],
+                                countries[index]['worldMapImage'],
                               );
                             },
                           ),
@@ -132,7 +133,7 @@ class _HomeSearchingScreenState extends State<HomeSearchingScreen> {
                 BodyContainerWidget(
                   title: "Where",
                   subtitle: "Add guests",
-                  callBackTap: () {},
+                  callBackTap: () => _showCalenderDialog(context), // Fixed here
                 ),
                 const SizedBox(height: 10),
                 BodyContainerWidget(
@@ -140,7 +141,7 @@ class _HomeSearchingScreenState extends State<HomeSearchingScreen> {
                   subtitle: "Any week",
                   callBackTap: () {
                     Get.bottomSheet(
-                        const HomeSearchingScreen(),
+                      const HomeSearchingScreen(),
                       isScrollControlled: true,
                     );
                   },
@@ -196,6 +197,15 @@ class _HomeSearchingScreenState extends State<HomeSearchingScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showCalenderDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CalenderDialogBoxWidget();
+      },
     );
   }
 }

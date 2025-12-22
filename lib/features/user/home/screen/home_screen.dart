@@ -5,6 +5,7 @@ import 'package:iconic/core/themes/app_colors.dart';
 import '../../../host/home/widget/body_widget.dart';
 import '../../../host/home/widget/home_app_bar_widget.dart';
 import '../home searching/screen/home_searching_screen.dart';
+import '../home searching/widget/searching_default_widget.dart';
 import '../widget/body_widget.dart';
 import '../widget/custom_slider_widget.dart';
 
@@ -34,35 +35,46 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }),*/
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 16.0,
-                top: 4.0,
-                right: 16.0,
-                bottom: 8.0,
-              ),
-              child: GestureDetector(
-                onTap: _searching,
-                child: Container(
-                  height: 38,
-                  width: 335,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: AppColors.black, width: 1),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16.0,
+                    top: 4.0,
+                    right: 8.0,
+                    bottom: 8.0,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Row(
-                      children: [
-                        Icon(Icons.search),
-                        const SizedBox(width: 20),
-                        Text("Search destinations"),
-                      ],
+                  child: GestureDetector(
+                    onTap: _searching1,
+                    child: Container(
+                      height: 38,
+                      width: 335,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: AppColors.black, width: 1),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Row(
+                          children: [
+                            Icon(Icons.search),
+                            const SizedBox(width: 20),
+                            Text("Search destinations"),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: _searching,
+                  child: SizedBox(width: 36,
+                  height: 36,
+                  child: Image.asset("assets/icons/Search (1).png"
+                      "",fit: BoxFit.cover,),),
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             Padding(
@@ -130,6 +142,16 @@ class _HomeScreenState extends State<HomeScreen> {
   void _searching() {
     Get.bottomSheet(
       const HomeSearchingScreen(),
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+    );
+  }
+  void _searching1() {
+    Get.bottomSheet(
+      const SearchingDefaultWidget(),
       isScrollControlled: true,
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
