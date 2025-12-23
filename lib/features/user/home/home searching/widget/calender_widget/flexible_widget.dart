@@ -32,10 +32,10 @@ class FlexibleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         const Divider(),
         const SizedBox(height: 16),
-
         const Text(
           "Stay for a week",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
@@ -53,32 +53,33 @@ class FlexibleWidget extends StatelessWidget {
         const SizedBox(height: 20),
         const Divider(),
         const SizedBox(height: 16),
-
         const Text(
           "Go anytime",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 16),
-
-        // GridView without SingleChildScrollView
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 0.85,
+        // Use Expanded with ListView instead
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: GridView.builder(
+              shrinkWrap: false,
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 0.85,
+              ),
+              itemCount: months.length,
+              itemBuilder: (context, index) {
+                final month = months[index]['month']!;
+                final year = months[index]['year']!;
+                return _anytimeCard(month, year);
+              },
+            ),
           ),
-          itemCount: months.length,
-          itemBuilder: (context, index) {
-            final month = months[index]['month']!;
-            final year = months[index]['year']!;
-            return _anytimeCard(month, year);
-          },
         ),
-
-        const SizedBox(height: 24),
       ],
     );
   }
@@ -115,7 +116,7 @@ class FlexibleWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/icons/calendar.png",
+            "assets/icons/nav3.png",
             width: 36,
             height: 36,
             color: Colors.amber.shade700,
