@@ -6,6 +6,7 @@ import '../../../host/home/widget/body_widget.dart';
 import '../../../host/home/widget/home_app_bar_widget.dart';
 import '../home searching/screen/home_searching_screen.dart';
 import '../home searching/widget/searching_default_widget.dart';
+import '../home_details_screen/screen/home_details_screen.dart';
 import '../widget/body_widget.dart';
 import '../widget/custom_slider_widget.dart';
 
@@ -117,14 +118,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: UserBodyWidget(
-                          initialIsLike: false, // or true, based on your requirement
-                          locationImage: "https://i.postimg.cc/qMWVj71K/Rectangle-34624198.png",
-                          amount: "58",
-                          locationName: "Broummana, Lebanon",
-                          title: "Cedar Breeze Hilltop Residence",
-                          presentRating: "4.5",
-                          totalRating: "100",
+                        child: GestureDetector(
+                          onTap: (){
+                            Get.to(()=>HomeDetailsScreen());
+                          },
+                          child: UserBodyWidget(
+                            initialIsLike: false, // or true, based on your requirement
+                            locationImage: "https://i.postimg.cc/qMWVj71K/Rectangle-34624198.png",
+                            amount: "58",
+                            locationName: "Broummana, Lebanon",
+                            title: "Cedar Breeze Hilltop Residence",
+                            presentRating: "4.5",
+                            totalRating: "100",
+                          ),
                         ),
 
                       );

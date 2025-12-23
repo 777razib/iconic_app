@@ -40,6 +40,7 @@ dependencies:
   flutter_easyloading: ^3.0.5
   logger: ^2.6.2
   intl: ^0.20.2
+  google_maps_flutter: ^2.14.0
 
     # Media & File Handling
   image_picker: ^1.2.1
