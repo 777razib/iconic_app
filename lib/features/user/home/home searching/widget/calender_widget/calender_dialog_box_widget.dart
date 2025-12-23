@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconic/core/themes/app_colors.dart';
-import 'package:intl/intl.dart';
-
 import 'dates_widget.dart';
 import 'flexible_widget.dart';
 import 'months_widget.dart';
@@ -16,9 +14,7 @@ class CalenderDialogBoxWidget extends StatefulWidget {
 
 class _CalenderDialogBoxWidgetState extends State<CalenderDialogBoxWidget> {
   final List<String> pageList = ["Dates", "Months", "Flexible"];
-
   int selectedIndex = 0;
-
   late Widget selectedWidget;
 
   @override
@@ -30,18 +26,15 @@ class _CalenderDialogBoxWidgetState extends State<CalenderDialogBoxWidget> {
   void _onTabSelected(int index) {
     setState(() {
       selectedIndex = index;
-
       switch (index) {
         case 0:
           selectedWidget = const DatesWidget();
           break;
         case 1:
-          selectedWidget = const MonthsWidget(
-            months: 3,
-          );
+          selectedWidget = const MonthsWidget(months: 3);
           break;
         case 2:
-          selectedWidget =  FlexibleWidget();
+          selectedWidget = FlexibleWidget();
           break;
       }
     });
@@ -50,16 +43,19 @@ class _CalenderDialogBoxWidgetState extends State<CalenderDialogBoxWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      insetPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0), // screen edge থেকে কম padding → dialog wider হবে
-      title: const Text("When’s your trip?"),
+      insetPadding:
+          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      title: const Text("When's your trip?"),
       content: ConstrainedBox(
         constraints: const BoxConstraints(
-          minWidth: 380, // minimum width (তোমার image এর মতো wide করার জন্য)
-          maxWidth: 450, // maximum (বড় screen এ too wide না হয়)
+          minWidth: 380,
+          maxWidth: 450,
         ),
         child: SizedBox(
-          height: 500, // Set a fixed height for the dialog content
+          width: 400, // Added fixed width
+          height: 500,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               // Tabs
               Row(
@@ -92,9 +88,7 @@ class _CalenderDialogBoxWidgetState extends State<CalenderDialogBoxWidget> {
                   );
                 }),
               ),
-
               const SizedBox(height: 24),
-
               // Selected widget
               Expanded(
                 child: selectedWidget,
@@ -109,7 +103,8 @@ class _CalenderDialogBoxWidgetState extends State<CalenderDialogBoxWidget> {
             backgroundColor: AppColors.secondaryColors,
           ),
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text("Skip",style: TextStyle(color: Colors.black),),
+          child:
+              const Text("Skip", style: TextStyle(color: Colors.black)),
         ),
         ElevatedButton(
           style: TextButton.styleFrom(
@@ -118,7 +113,7 @@ class _CalenderDialogBoxWidgetState extends State<CalenderDialogBoxWidget> {
           onPressed: () {
             // Next logic here
           },
-          child: const Text("Next",style: TextStyle(color: Colors.white)),
+          child: const Text("Next", style: TextStyle(color: Colors.white)),
         ),
       ],
     );
